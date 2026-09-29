@@ -1,0 +1,161 @@
+.sections {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 8px;
+  color: var(--text-faint);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 8px 0;
+}
+
+.rowTop {
+  align-items: flex-start;
+}
+
+.text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.textTop {
+  padding-top: 6px;
+}
+
+.hint {
+  color: var(--text-faint);
+}
+
+.control {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.num {
+  width: 50px;
+  text-align: right;
+}
+
+.error {
+  color: var(--danger);
+}
+
+.alert {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 4px;
+  padding: 8px 10px;
+  border-radius: var(--radius-md);
+  background: var(--warning-bg);
+  color: var(--warning);
+}
+
+.inline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.select {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: var(--h-input);
+  padding: 0 6px 0 10px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  box-shadow: inset 0 0 0 1px var(--border);
+}
+
+.selectValue {
+  width: 55px;
+  text-align: left;
+  font-family: var(--font-mono);
+}
+
+.selectChevron {
+  color: var(--text-faint);
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+.smallBtn {
+  height: var(--h-input);
+  padding: 0 10px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  transition:
+    background var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+}
+
+.smallBtn:hover {
+  background: var(--surface-3);
+  color: var(--text);
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px 0;
+}
+
+.column .inline {
+  width: 100%;
+}
+
+.pathBox {
+  flex: 1;
+}
+
+.pathInput {
+  color: var(--text-muted);
+}
+
+.folderBtn {
+  height: var(--h-input);
+}
+
+.reset {
+  margin-left: -8px;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.save {
+  padding: 0 18px;
+}

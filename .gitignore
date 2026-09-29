@@ -1,0 +1,11 @@
+node_modules/
+out/
+dist/
+release/
+.dev-data/
+test-results/
+playwright-report/
+*.log
+.DS_Store
+tests/e2e/_*.spec.ts
+*.tsbuildinfo

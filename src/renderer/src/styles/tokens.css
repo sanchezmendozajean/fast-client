@@ -1,0 +1,147 @@
+/* Design tokens — source: docs/diseno/project (approved handoff), 1:1 scale (see docs/05-interfaz.md). */
+:root,
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --bg: #0f1115;
+  --surface-1: #151820;
+  --surface-2: #1b1f28;
+  --surface-3: #232835;
+  --border: #232833;
+  --scrim: rgb(5 6 10 / 0.55);
+
+  --text: #e6e8ee;
+  --text-muted: #8e97a7;
+  --text-faint: #5c6474;
+
+  --accent: #7c9cff;
+  --accent-strong: #95afff;
+  --on-accent: #0b1024;
+  --accent-bg: rgb(124 156 255 / 0.12);
+
+  --success: #3fcf8e;
+  --success-bg: rgb(63 207 142 / 0.12);
+  --warning: #f5b544;
+  --warning-bg: rgb(245 181 68 / 0.1);
+  --danger: #f06a6a;
+  --danger-bg: rgb(240 106 106 / 0.12);
+  --info: #5fb3f5;
+  --info-bg: rgb(95 179 245 / 0.12);
+
+  --var-ok: #3fcf8e;
+  --var-ok-bg: rgb(63 207 142 / 0.12);
+  --var-missing: var(--danger);
+  --var-missing-bg: var(--danger-bg);
+
+  --m-get: #3fcf8e;
+  --m-post: #f5b544;
+  --m-put: #5fb3f5;
+  --m-patch: #b48cff;
+  --m-delete: #f06a6a;
+  --m-head: #8a93a3;
+  --m-options: #8a93a3;
+
+  --syn-key: #a9bcff;
+  --syn-string: #8fd9b0;
+  --syn-number: #f5c47a;
+  --syn-keyword: #c7a4ff;
+  --syn-punct: #6f7888;
+
+  --win-close-hover: #c42b1c;
+
+  --shadow-float: 0 10px 30px rgb(0 0 0 / 0.45), 0 0 0 1px #262c38;
+  --shadow-tip: 0 2px 6px rgb(0 0 0 / 0.35), 0 0 0 1px #262c38;
+
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+
+  --font-ui: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --fs-xs: 10px;
+  --fs-sm: 11px;
+  --fs-md: 13px;
+  --fs-lg: 15px;
+  --lh-code: 20px;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+
+  --h-titlebar: 40px;
+  --h-tabbar: 44px;
+  --h-tab: 34px;
+  --h-subtabs: 38px;
+  --h-row: 28px;
+  --h-urlbar: 40px;
+  --h-btn: 32px;
+  --h-input: 30px;
+  --h-icon-btn: 28px;
+  --w-method: 44px;
+  --w-win-ctrl: 46px;
+
+  --dur: 150ms;
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+[data-theme='light'] {
+  color-scheme: light;
+
+  --bg: #ffffff;
+  --surface-1: #f5f6f8;
+  --surface-2: #eef0f4;
+  --surface-3: #e3e7ee;
+  --border: #e3e6ec;
+  --scrim: rgb(20 26 40 / 0.28);
+
+  --text: #1a1d24;
+  --text-muted: #586170;
+  --text-faint: #98a0ad;
+
+  --accent: #4b6bfb;
+  --accent-strong: #3553e0;
+  --on-accent: #ffffff;
+  --accent-bg: rgb(75 107 251 / 0.1);
+
+  --success: #16895a;
+  --success-bg: rgb(22 137 90 / 0.1);
+  --warning: #9a5c00;
+  --warning-bg: rgb(184 110 0 / 0.1);
+  --danger: #d23f3f;
+  --danger-bg: rgb(210 63 63 / 0.1);
+  --info: #1f7fc9;
+  --info-bg: rgb(31 127 201 / 0.1);
+
+  --var-ok: #16895a;
+  --var-ok-bg: rgb(22 137 90 / 0.1);
+
+  --m-get: #16895a;
+  --m-post: #b86e00;
+  --m-put: #1f7fc9;
+  --m-patch: #7c4ee0;
+  --m-delete: #d23f3f;
+  --m-head: #586170;
+  --m-options: #586170;
+
+  --syn-key: #3553e0;
+  --syn-string: #16895a;
+  --syn-number: #b86e00;
+  --syn-keyword: #7c4ee0;
+  --syn-punct: #8a93a3;
+
+  --shadow-float: 0 10px 30px rgb(20 30 60 / 0.14), 0 0 0 1px #e1e5ec;
+  --shadow-tip: 0 1px 3px rgb(20 30 60 / 0.12), 0 0 0 1px #d8dde6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur: 0ms;
+  }
+}

@@ -1,0 +1,134 @@
+.sidebar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: none;
+  min-width: 0;
+  padding: 4px 0 8px;
+  background: var(--surface-1);
+}
+
+.header {
+  display: flex;
+  gap: 6px;
+  padding: 0 10px 0 12px;
+}
+
+.search {
+  flex: 1;
+  min-width: 0;
+  height: var(--h-btn);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 8px 0 10px;
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+  color: var(--text-faint);
+  cursor: text;
+}
+
+.search:focus-within {
+  box-shadow: inset 0 0 0 1px var(--accent);
+}
+
+.searchInput {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--text);
+}
+
+.searchInput::placeholder {
+  color: var(--text-faint);
+}
+
+.kbd {
+  flex: none;
+  padding: 1px 5px;
+  border-radius: var(--radius-xs);
+  background: var(--surface-3);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+}
+
+.clear {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: var(--radius-xs);
+  color: var(--text-faint);
+}
+
+.clear:hover {
+  background: var(--surface-3);
+  color: var(--text);
+}
+
+.sectionTitle {
+  padding: 18px 20px 6px;
+  color: var(--text-faint);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.footer {
+  display: flex;
+  gap: 2px;
+  padding: 4px 10px 0;
+}
+
+.resize {
+  position: absolute;
+  top: 0;
+  right: -3px;
+  bottom: 0;
+  z-index: 5;
+  width: 6px;
+  cursor: col-resize;
+}
+
+.resize:hover,
+.resize:active {
+  background: linear-gradient(to right, transparent 2px, var(--accent) 2px, var(--accent) 4px, transparent 4px);
+  opacity: 0.6;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 40px 24px;
+  text-align: center;
+}
+
+.emptyIcon {
+  margin-bottom: 4px;
+  color: var(--text-faint);
+}
+
+.emptyTitle {
+  font-weight: var(--fw-medium);
+}
+
+.emptyText {
+  margin-bottom: 8px;
+  color: var(--text-faint);
+}

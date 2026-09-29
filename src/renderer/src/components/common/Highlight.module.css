@@ -1,0 +1,5 @@
+.mark {
+  border-radius: 2px;
+  background: var(--accent-bg);
+  color: var(--accent);
+}

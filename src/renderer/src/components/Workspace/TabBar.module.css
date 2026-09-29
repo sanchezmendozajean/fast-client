@@ -1,0 +1,141 @@
+.bar {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  flex: 0 0 var(--h-tabbar);
+  height: var(--h-tabbar);
+  padding: 0 10px;
+  box-shadow: inset 0 -1px 0 var(--border);
+}
+
+.expand {
+  margin: 0 6px 3px -2px;
+}
+
+.scroller {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  min-width: 0;
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+}
+
+.scroller::-webkit-scrollbar {
+  display: none;
+}
+
+.shadowLeft {
+  mask-image: linear-gradient(to right, transparent 0, #000 24px);
+}
+
+.shadowRight {
+  mask-image: linear-gradient(to left, transparent 0, #000 24px);
+}
+
+.shadowLeft.shadowRight {
+  mask-image: linear-gradient(to right, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: none;
+  max-width: 260px;
+  height: var(--h-tab);
+  padding: 0 8px 0 12px;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  color: var(--text-muted);
+  white-space: nowrap;
+  outline-offset: -2px;
+  touch-action: none;
+  transition:
+    background var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+}
+
+.tab:hover {
+  background: var(--surface-1);
+  color: var(--text);
+}
+
+.active,
+.active:hover {
+  background: var(--bg);
+  color: var(--text);
+  box-shadow:
+    inset 1px 1px 0 var(--border),
+    inset -1px 0 0 var(--border),
+    0 1px 0 var(--bg);
+}
+
+.active .name {
+  font-weight: var(--fw-medium);
+}
+
+.dragging {
+  z-index: 2;
+  opacity: 0.85;
+}
+
+.name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.end {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  flex: none;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--text-muted);
+}
+
+.close {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-xs);
+  color: var(--text-faint);
+  transition:
+    background var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+}
+
+.close:hover {
+  background: var(--surface-3);
+  color: var(--text);
+}
+
+/* With unsaved changes the dot shows; the close button appears on hover. */
+.closeOnHover {
+  opacity: 0;
+}
+
+.tab:hover .closeOnHover {
+  opacity: 1;
+}
+
+.tab:hover .dot {
+  visibility: hidden;
+}
+
+.add {
+  margin: 0 0 3px 4px;
+}

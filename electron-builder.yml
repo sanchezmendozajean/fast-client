@@ -1,0 +1,34 @@
+appId: com.fastclient.app
+productName: Fast Client
+copyright: Copyright © 2026 Jean Sánchez Mendoza
+directories:
+  output: release
+  buildResources: resources
+files:
+  - out/**/*
+  - resources/icon.png
+  - package.json
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+  icon: resources/icon.png
+fileAssociations:
+  - ext: fcprofile
+    name: Fast Client Profile
+    description: Perfil de Fast Client
+    role: Editor
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: Fast Client
+  artifactName: Fast-Client-Setup-${version}.${ext}
+  deleteAppDataOnUninstall: false
+publish:
+  provider: github
+  owner: sanchezmendozajean
+  repo: fast-client
+  releaseType: release

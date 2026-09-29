@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<div role="dialog" aria-modal="true" aria-labelledby="pref-title" style="width:448px;display:flex;flex-direction:column;background:var(--surface-1);color:var(--text);font-family:var(--font-ui);font-size:10px;border-radius:8px;box-shadow:var(--shadow-float);overflow:hidden;-webkit-font-smoothing:antialiased;">
+
+  <div style="display:flex;align-items:center;gap:8px;padding:14px 10px 10px 16px;">
+    <span class="material-symbols-rounded" style="font-size:16px;color:var(--text-muted);font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 20;">settings_applications</span>
+    <span id="pref-title" style="font-size:12px;font-weight:600;letter-spacing:-0.01em;">Preferencias</span>
+    <div title="Cerrar (Esc)" style="margin-left:auto;width:22px;height:22px;display:flex;align-items:center;justify-content:center;border-radius:5px;color:var(--text-faint);" style-hover="background:var(--surface-3);color:var(--text);">
+      <span class="material-symbols-rounded" style="font-size:14px;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 20;">close</span>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:18px;padding:6px 16px 18px;">
+
+    <div style="display:flex;flex-direction:column;gap:2px;">
+      <div style="display:flex;align-items:center;gap:6px;padding-bottom:6px;color:var(--text-faint);font-size:9px;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;">
+        <span class="material-symbols-rounded" style="font-size:13px;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 20;">lan</span><span>Red</span>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;gap:16px;padding:6px 0;">
+        <div style="flex:1;display:flex;flex-direction:column;gap:2px;padding-top:5px;">
+          <span>Timeout por defecto</span>
+          <span style="color:var(--text-faint);">Se usa cuando el request no define uno.</span>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;">
+          <div style="{{ timeoutBox }}">
+            <input value="{{ timeout }}" onChange="{{ onTimeout }}" inputMode="numeric" aria-label="Timeout en segundos" style="width:40px;height:100%;border:0;outline:none;background:transparent;color:var(--text);font-family:var(--font-mono);font-size:10px;text-align:right;padding:0;"></input>
+            <span style="color:var(--text-faint);font-family:var(--font-mono);">s</span>
+          </div>
+          <sc-if value="{{ timeoutErr }}" hint-placeholder-val="{{ false }}">
+            <span style="color:var(--danger);">Entre 1 y 600 segundos</span>
+          </sc-if>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:16px;padding:6px 0;">
+        <div style="flex:1;display:flex;flex-direction:column;gap:2px;">
+          <span>Verificar certificados SSL</span>
+          <span style="color:var(--text-faint);">Rechaza conexiones con certificados no válidos.</span>
+        </div>
+        <div role="switch" aria-checked="{{ ssl }}" onClick="{{ toggleSsl }}" style="{{ sslTrack }}"><span style="{{ sslKnob }}"></span></div>
+      </div>
+      <sc-if value="{{ sslOff }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;align-items:center;gap:6px;padding:6px 8px;margin:0 0 4px;border-radius:6px;background:var(--warning-bg);color:var(--warning);">
+          <span class="material-symbols-rounded" style="font-size:14px;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 20;">gpp_maybe</span>
+          <span>Solo para servidores de desarrollo con certificados autofirmados.</span>
+        </div>
+      </sc-if>
+
+      <div style="display:flex;align-items:center;gap:16px;padding:6px 0;">
+        <div style="flex:1;display:flex;flex-direction:column;gap:2px;">
+          <span>Seguir redirecciones en requests nuevos</span>
+          <span style="color:var(--text-faint);">Valor inicial; cada request puede cambiarlo.</span>
+        </div>
+        <div role="switch" aria-checked="{{ redirects }}" onClick="{{ toggleRedirects }}" style="{{ redirTrack }}"><span style="{{ redirKnob }}"></span></div>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:16px;padding:6px 0;">
+        <div style="flex:1;display:flex;flex-direction:column;gap:2px;">
+          <span>Tamaño máximo de respuesta a mostrar</span>
+          <span style="color:var(--text-faint);">Por encima, se ofrece guardar a archivo.</span>
+        </div>
+        <div style="height:24px;display:flex;align-items:center;gap:4px;padding:0 8px;border-radius:5px;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--border);">
+          <span style="width:40px;text-align:right;font-family:var(--font-mono);">5</span>
+          <span style="color:var(--text-faint);font-family:var(--font-mono);">MB</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:2px;">
+      <div style="display:flex;align-items:center;gap:6px;padding-bottom:6px;color:var(--text-faint);font-size:9px;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;">
+        <span class="material-symbols-rounded" style="font-size:13px;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 20;">palette</span><span>Interfaz</span>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:16px;padding:6px 0;">
+        <span style="flex:1;">Tema</span>
+        <div role="radiogroup" style="display:flex;gap:2px;padding:2px;border-radius:6px;background:var(--surface-2);color:var(--text-muted);">
+          <sc-for list="{{ themes }}" as="t" hint-placeholder-count="3">
+            <div role="radio" aria-checked="{{ t.on }}" onClick="{{ t.pick }}" style="{{ t.style }}">
+              <span class="material-symbols-rounded" style="font-size:12px;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 20;">{{ t.icon }}</span><span>{{ t.label }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:16px;padding:6px 0;">
+        <span style="flex:1;">Zoom</span>
+        <div style="display:flex;align-items:center;gap:6px;">
+          <div style="height:24px;display:flex;align-items:center;gap:6px;padding:0 4px 0 8px;border-radius:5px;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--border);">
+            <span style="width:44px;font-family:var(--font-mono);">{{ zoomLabel }}</span>
+            <span class="material-symbols-rounded" style="font-size:13px;color:var(--text-faint);font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 20;">expand_more</span>
+          </div>
+          <div onClick="{{ resetZoom }}" style="height:24px;display:flex;align-items:center;padding:0 8px;border-radius:5px;background:var(--surface-2);color:var(--text-muted);font-family:var(--font-mono);" style-hover="background:var(--surface-3);color:var(--text);">100 %</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:2px;">
+      <div style="display:flex;align-items:center;gap:6px;padding-bottom:6px;color:var(--text-faint);font-size:9px;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;">
+        <span class="material-symbols-rounded" style="font-size:13px;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 20;">folder_managed</span><span>Perfiles</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;padding:6px 0;">
+        <span>Carpeta de perfiles</span>
+        <div style="display:flex;gap:6px;">
+          <div title="C:\Users\ana\Documents\Fast Client" style="flex:1;min-width:0;height:24px;display:flex;align-items:center;padding:0 8px;border-radius:5px;background:var(--surface-2);color:var(--text-muted);font-family:var(--font-mono);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">C:\Users\ana\Documents\Fast Client</div>
+          <div style="height:24px;display:flex;align-items:center;gap:5px;padding:0 9px 0 7px;border-radius:5px;background:var(--surface-3);" style-hover="background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--border);">
+            <span class="material-symbols-rounded" style="font-size:13px;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 20;">folder_open</span><span>Abrir carpeta</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:6px;padding:10px 16px;background:var(--bg);box-shadow:inset 0 1px 0 var(--border);">
+    <div style="height:26px;display:flex;align-items:center;gap:5px;padding:0 8px 0 6px;margin-left:-6px;border-radius:5px;color:var(--text-muted);" style-hover="background:var(--surface-2);color:var(--text);">
+      <span class="material-symbols-rounded" style="font-size:13px;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 20;">restart_alt</span><span>Restablecer valores por defecto</span>
+    </div>
+    <div style="margin-left:auto;height:26px;display:flex;align-items:center;padding:0 12px;border-radius:5px;background:var(--surface-3);" style-hover="background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--border);">Cancelar</div>
+    <div aria-disabled="{{ timeoutErr }}" style="{{ saveStyle }}">Guardar</div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:448,&quot;height&quot;:560},&quot;ssl&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;dark&quot;,&quot;light&quot;,&quot;system&quot;],&quot;default&quot;:&quot;dark&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { timeout: '30', ssl: this.props.ssl ?? true, redirects: true, theme: this.props.theme ?? 'dark', zoom: 100 };
+  track(on) {
+    return { width: '26px', height: '15px', flex: '0 0 26px', borderRadius: '8px', position: 'relative', cursor: 'pointer', background: on ? 'var(--accent)' : 'var(--surface-3)', transition: 'background 150ms cubic-bezier(.2,.8,.2,1)' };
+  }
+  knob(on) {
+    return { position: 'absolute', top: '2px', left: on ? '13px' : '2px', width: '11px', height: '11px', borderRadius: '50%', background: on ? 'var(--on-accent)' : 'var(--text-muted)', transition: 'left 150ms cubic-bezier(.2,.8,.2,1)' };
+  }
+  renderVals() {
+    const s = this.state;
+    const n = Number(s.timeout);
+    const timeoutErr = !/^\d+$/.test(s.timeout) || n < 1 || n > 600;
+    const themes = [['dark', 'dark_mode', 'Oscuro'], ['light', 'light_mode', 'Claro'], ['system', 'contrast', 'Sistema']].map(([id, icon, label]) => {
+      const on = s.theme === id;
+      return { icon, label, on, pick: () => this.setState({ theme: id }),
+        style: { display: 'flex', alignItems: 'center', gap: '4px', height: '20px', padding: '0 8px', borderRadius: '4px', cursor: 'pointer', background: on ? 'var(--surface-3)' : 'transparent', color: on ? 'var(--text)' : 'var(--text-muted)', fontWeight: on ? 500 : 400 } };
+    });
+    return {
+      timeout: s.timeout, timeoutErr,
+      onTimeout: e => this.setState({ timeout: e.target.value }),
+      timeoutBox: { height: '24px', display: 'flex', alignItems: 'center', gap: '4px', padding: '0 8px', borderRadius: '5px', background: 'var(--surface-2)', boxShadow: `inset 0 0 0 1px ${timeoutErr ? 'var(--danger)' : 'var(--border)'}` },
+      ssl: s.ssl, sslOff: !s.ssl, toggleSsl: () => this.setState({ ssl: !s.ssl }),
+      sslTrack: this.track(s.ssl), sslKnob: this.knob(s.ssl),
+      redirects: s.redirects, toggleRedirects: () => this.setState({ redirects: !s.redirects }),
+      redirTrack: this.track(s.redirects), redirKnob: this.knob(s.redirects),
+      themes, zoomLabel: s.zoom + ' %', resetZoom: () => this.setState({ zoom: 100 }),
+      saveStyle: { height: '26px', display: 'flex', alignItems: 'center', padding: '0 14px', borderRadius: '5px', fontWeight: 600, background: 'var(--accent)', color: 'var(--on-accent)', opacity: timeoutErr ? 0.4 : 1, cursor: timeoutErr ? 'not-allowed' : 'default' },
+    };
+  }
+}
+</script>
+</body>
+</html>

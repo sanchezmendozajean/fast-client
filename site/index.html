@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fast Client · Cliente HTTP minimalista para Windows</title>
+  <meta name="description" content="Abre, escribe un request, pulsa Send. Un cliente HTTP de escritorio rápido, bonito y offline, con todo tu trabajo en un solo archivo.">
+  <meta name="theme-color" content="#0f1115">
+  <meta property="og:title" content="Fast Client">
+  <meta property="og:description" content="Cliente HTTP de escritorio minimalista: sin cuentas, sin nube, todo en un archivo.">
+  <meta property="og:image" content="https://sanchezmendozajean.github.io/fast-client/assets/og.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="assets/icon.png">
+  <link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-bolt" viewBox="0 0 24 24"><path fill="currentColor" d="M11 21h-1l1-7H7.5c-.88 0-.33-.75-.31-.78C8.48 10.94 10.42 7.54 13.01 3h1l-1 7h3.51c.4 0 .62.19.4.66C12.97 17.55 11 21 11 21z"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19h14"/></symbol>
+    <symbol id="i-github" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.58 9.58 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85V21c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></symbol>
+    <symbol id="i-fast" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M13 3 5 14h6l-1 7 8-11h-6l1-7z"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5z"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M14 3v5h5M9 13h6M9 17h4"/></symbol>
+    <symbol id="i-offline" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6l-8-3z"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-tree" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M4 5h6M4 5v14m0-7h5m-5 7h5M13 12h7M13 19h7M13 5h7"/></symbol>
+    <symbol id="i-var" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M8 4c-2 0-3 1-3 3v2c0 1.5-1 3-2 3 1 0 2 1.5 2 3v2c0 2 1 3 3 3M16 4c2 0 3 1 3 3v2c0 1.5 1 3 2 3-1 0-2 1.5-2 3v2c0 2-1 3-3 3"/></symbol>
+    <symbol id="i-terminal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="m7 9 3 3-3 3m5 0h5"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></symbol>
+    <symbol id="i-update" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M20 12a8 8 0 1 1-2.34-5.66M20 4v4h-4M12 8v4l3 2"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 11v5M12 8h.01"/></symbol>
+  </svg>
+
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top" aria-label="Fast Client, inicio">
+        <svg class="brand-bolt"><use href="#i-bolt"/></svg>
+        <span>Fast Client</span>
+      </a>
+      <nav class="nav-links" aria-label="Secciones">
+        <a href="#caracteristicas">Características</a>
+        <a href="#descargar">Descargar</a>
+        <a class="nav-gh" href="https://github.com/sanchezmendozajean/fast-client" aria-label="Código en GitHub">
+          <svg><use href="#i-github"/></svg><span>GitHub</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-copy">
+        <p class="eyebrow"><span class="dot"></span> Gratis y open source · Windows 10 / 11</p>
+        <h1>Escribe el request.<br><span class="accent">Pulsa Send.</span> Listo.</h1>
+        <p class="lede">Un cliente HTTP de escritorio que abre al instante, no pide cuenta, no sube nada a la nube y guarda todo tu trabajo en un solo archivo.</p>
+        <div class="cta">
+          <a class="btn btn-primary js-download" href="https://github.com/sanchezmendozajean/fast-client/releases/latest">
+            <svg><use href="#i-download"/></svg>
+            <span class="js-download-label">Descargar para Windows</span>
+          </a>
+          <a class="btn btn-ghost" href="https://github.com/sanchezmendozajean/fast-client">
+            <svg><use href="#i-github"/></svg><span>Ver el código</span>
+          </a>
+        </div>
+        <p class="meta js-release-meta">Instalador para Windows de 64 bits</p>
+      </div>
+
+      <div class="wrap shot-wrap">
+        <figure class="window">
+          <picture>
+            <source srcset="assets/screenshot-light.webp" media="(prefers-color-scheme: light)">
+            <img src="assets/screenshot-dark.webp" width="2880" height="1760"
+                 alt="Fast Client con la colección API Tienda abierta: un POST a /orders con su body JSON y la respuesta 201 Created al lado">
+          </picture>
+        </figure>
+      </div>
+    </section>
+
+    <section id="caracteristicas" class="section">
+      <div class="wrap">
+        <h2>Solo lo que usas a diario.<br><span class="muted">Cada cosa, pulida.</span></h2>
+        <div class="grid">
+          <article class="card">
+            <svg class="card-icon"><use href="#i-fast"/></svg>
+            <h3>Instantáneo</h3>
+            <p>Al abrir ya estás en el área de trabajo, con tus pestañas donde las dejaste. Sin login, sin splash.</p>
+          </article>
+          <article class="card">
+            <svg class="card-icon"><use href="#i-file"/></svg>
+            <h3>Un archivo, todo tu trabajo</h3>
+            <p>Colecciones, requests, headers y variables viven en un <code>.fcprofile</code> que puedes copiar, versionar o enviar.</p>
+          </article>
+          <article class="card">
+            <svg class="card-icon"><use href="#i-offline"/></svg>
+            <h3>Offline por diseño</h3>
+            <p>La interfaz no hace llamadas de red. Íconos y fuentes van dentro de la app. Tus datos no salen de tu equipo.</p>
+          </article>
+          <article class="card">
+            <svg class="card-icon"><use href="#i-tree"/></svg>
+            <h3>Colecciones y pestañas</h3>
+            <p>Árbol de colecciones con arrastrar y soltar, renombrado en línea y pestañas que se restauran al volver.</p>
+          </article>
+          <article class="card">
+            <svg class="card-icon"><use href="#i-var"/></svg>
+            <h3>Variables <code>{{así}}</code></h3>
+            <p>Define <code>baseUrl</code> o <code>token</code> por colección y úsalos en URL, headers y body, resaltados al escribir.</p>
+          </article>
+          <article class="card">
+            <svg class="card-icon"><use href="#i-terminal"/></svg>
+            <h3>cURL de ida y vuelta</h3>
+            <p>Pega un cURL en la barra de URL para importarlo, o copia cualquier request como cURL con un clic.</p>
+          </article>
+          <article class="card">
+            <svg class="card-icon"><use href="#i-moon"/></svg>
+            <h3>Oscuro o claro</h3>
+            <p>Tema oscuro por defecto, claro o según el sistema. Zoom ajustable y atajos de teclado para todo.</p>
+          </article>
+          <article class="card">
+            <svg class="card-icon"><use href="#i-update"/></svg>
+            <h3>Siempre al día</h3>
+            <p>Las nuevas versiones se descargan en segundo plano y se instalan al cerrar. Puedes desactivarlo en Preferencias.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section split">
+      <div class="wrap split-inner">
+        <div class="split-copy">
+          <h2>Tu perfil es tuyo.</h2>
+          <p>Un único archivo JSON legible. Guárdalo en tu repositorio junto al proyecto, pásalo a un compañero o llévalo en un USB. Nunca guarda las respuestas del servidor, así que no arrastra datos sensibles.</p>
+          <ul class="checks">
+            <li>Guardado automático en los momentos que importan</li>
+            <li>Escritura atómica: el archivo nunca queda a medias</li>
+            <li>Abrir, Nuevo y Reubicar desde el menú Archivo</li>
+          </ul>
+        </div>
+        <pre class="code" aria-label="Ejemplo de archivo de perfil"><code><span class="c-p">{</span>
+  <span class="c-k">"app"</span><span class="c-p">:</span> <span class="c-s">"fast-client"</span><span class="c-p">,</span>
+  <span class="c-k">"name"</span><span class="c-p">:</span> <span class="c-s">"perfil"</span><span class="c-p">,</span>
+  <span class="c-k">"collections"</span><span class="c-p">: [{</span>
+    <span class="c-k">"name"</span><span class="c-p">:</span> <span class="c-s">"API Tienda"</span><span class="c-p">,</span>
+    <span class="c-k">"variables"</span><span class="c-p">: [{</span>
+      <span class="c-k">"key"</span><span class="c-p">:</span> <span class="c-s">"baseUrl"</span><span class="c-p">,</span>
+      <span class="c-k">"value"</span><span class="c-p">:</span> <span class="c-s">"https://api.tienda.dev"</span>
+    <span class="c-p">}],</span>
+    <span class="c-k">"requests"</span><span class="c-p">: [{</span>
+      <span class="c-k">"name"</span><span class="c-p">:</span> <span class="c-s">"Crear pedido"</span><span class="c-p">,</span>
+      <span class="c-k">"method"</span><span class="c-p">:</span> <span class="c-s">"POST"</span><span class="c-p">,</span>
+      <span class="c-k">"url"</span><span class="c-p">:</span> <span class="c-s">"{{baseUrl}}/orders"</span>
+    <span class="c-p">}]</span>
+  <span class="c-p">}]</span>
+<span class="c-p">}</span></code></pre>
+      </div>
+    </section>
+
+    <section id="descargar" class="section download">
+      <div class="wrap download-inner">
+        <img class="download-icon" src="assets/icon.png" width="72" height="72" alt="">
+        <h2>Descarga Fast Client</h2>
+        <p class="muted">Gratis, sin cuenta y con el código abierto bajo licencia MIT.</p>
+        <a class="btn btn-primary btn-lg js-download" href="https://github.com/sanchezmendozajean/fast-client/releases/latest">
+          <svg><use href="#i-download"/></svg>
+          <span class="js-download-label">Descargar para Windows</span>
+        </a>
+        <p class="meta js-release-meta">Instalador para Windows de 64 bits</p>
+        <div class="note" role="note">
+          <svg><use href="#i-info"/></svg>
+          <p>El instalador aún no está firmado, así que Windows puede mostrar <strong>«Windows protegió su PC»</strong>. Pulsa <strong>Más información</strong> y luego <strong>Ejecutar de todos modos</strong>.</p>
+        </div>
+        <p class="small"><a href="https://github.com/sanchezmendozajean/fast-client/releases">Todas las versiones y notas de cambios</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <span class="brand brand-sm"><svg class="brand-bolt"><use href="#i-bolt"/></svg> Fast Client</span>
+      <span class="muted">Hecho por <a href="https://github.com/sanchezmendozajean">Jean Sánchez Mendoza</a> · Licencia MIT</span>
+      <a href="https://github.com/sanchezmendozajean/fast-client/issues">Reportar un problema</a>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+.tip {
+  position: fixed;
+  z-index: 1000;
+  width: max-content;
+  max-width: min(420px, calc(100vw - 16px));
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-3);
+  color: var(--text);
+  font-size: var(--fs-sm);
+  line-height: 1.4;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+  box-shadow: var(--shadow-tip);
+  pointer-events: none;
+  animation: tipIn var(--dur) var(--ease);
+}
+
+.above {
+  transform: translateY(-100%);
+}
+
+@keyframes tipIn {
+  from {
+    opacity: 0;
+  }
+}

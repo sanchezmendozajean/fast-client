@@ -1,0 +1,31 @@
+.track {
+  position: relative;
+  flex: 0 0 32px;
+  width: 32px;
+  height: 19px;
+  border-radius: 10px;
+  background: var(--surface-3);
+  transition: background var(--dur) var(--ease);
+}
+
+.knob {
+  position: absolute;
+  top: 2.5px;
+  left: 2.5px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  transition:
+    left var(--dur) var(--ease),
+    background var(--dur) var(--ease);
+}
+
+.on {
+  background: var(--accent);
+}
+
+.on .knob {
+  left: 15.5px;
+  background: var(--on-accent);
+}

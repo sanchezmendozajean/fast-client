@@ -1,0 +1,330 @@
+/* --pad-l / --pad-r are set by the split pane (side by side vs stacked). */
+.panel {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  container-type: inline-size;
+}
+
+.subtabs {
+  display: flex;
+  align-items: stretch;
+  gap: 2px;
+  flex: 0 0 var(--h-subtabs);
+  height: var(--h-subtabs);
+  padding: 0 10px 0 calc(var(--pad-l) - 6px);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.subtab {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: none;
+  padding: 0 10px;
+  color: var(--text-muted);
+  outline-offset: -4px;
+  transition: color var(--dur) var(--ease);
+}
+
+.subtab:hover {
+  color: var(--text);
+}
+
+.subtabOn {
+  color: var(--text);
+  font-weight: var(--fw-medium);
+}
+
+.subtabOn::after {
+  content: '';
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--accent);
+}
+
+.subtabIconOn {
+  color: var(--accent);
+}
+
+.count {
+  color: var(--text-faint);
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-regular);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.panelFill {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.panelScroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.tableWrap {
+  padding: 12px var(--pad-r) 16px var(--pad-l);
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  flex: none;
+  padding: 12px var(--pad-r) 10px var(--pad-l);
+}
+
+.toolRight {
+  margin-left: auto;
+}
+
+.invalid {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--warning);
+  font-size: var(--fs-sm);
+}
+
+.codeArea {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  margin: 0 var(--pad-r) 16px var(--pad-l);
+}
+
+.scrollArea {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 0 var(--pad-r) 16px var(--pad-l);
+}
+
+.emptyNote {
+  padding: 24px var(--pad-r) 24px var(--pad-l);
+  color: var(--text-faint);
+}
+
+.cellInput {
+  width: 100%;
+  min-width: 0;
+  height: 26px;
+  padding: 0 4px;
+  border: 0;
+  border-radius: var(--radius-xs);
+  outline: none;
+  background: transparent;
+  font-family: var(--font-mono);
+  color: var(--text);
+}
+
+.cellInput:hover,
+.cellInput:focus {
+  background: var(--surface-2);
+}
+
+.cellInput:focus {
+  box-shadow: inset 0 0 0 1px var(--accent);
+}
+
+.fileBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  max-width: 100%;
+  height: 24px;
+  padding: 0 8px 0 6px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-3);
+  color: var(--text-muted);
+}
+
+.fileBtn:hover {
+  color: var(--text);
+}
+
+.fileName {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  color: var(--text);
+}
+
+.fileEmpty {
+  color: var(--text-faint);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 640px;
+  padding: 4px var(--pad-r) 16px var(--pad-l);
+}
+
+.field {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+}
+
+.fieldLabel {
+  color: var(--text-muted);
+}
+
+.fieldInput {
+  width: 100%;
+}
+
+/* Rows whose control can grow (bearer token): label stays on the first line. */
+.fieldTop {
+  align-items: start;
+}
+
+.fieldTop .fieldLabel {
+  line-height: var(--h-input);
+}
+
+.tokenBox {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+  width: 100%;
+  min-height: var(--h-input);
+  padding: 0 10px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  box-shadow: inset 0 0 0 1px var(--border);
+  transition: box-shadow var(--dur) var(--ease);
+}
+
+.tokenBox:focus-within {
+  box-shadow: inset 0 0 0 1px var(--accent);
+}
+
+.tokenInput {
+  flex: 1;
+  min-width: 0;
+  min-height: var(--h-input);
+  padding: calc((var(--h-input) - 1lh) / 2) 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font-mono);
+  line-height: 1.5;
+  resize: none;
+  field-sizing: content;
+  overflow-wrap: anywhere;
+  word-break: break-all;
+}
+
+.masked {
+  -webkit-text-security: disc;
+}
+
+.tokenActions {
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+  gap: 2px;
+  height: var(--h-input);
+}
+
+.eye {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  margin-right: -4px;
+  border-radius: var(--radius-xs);
+  color: var(--text-faint);
+}
+
+.eye:hover {
+  background: var(--surface-3);
+  color: var(--text);
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  max-width: 640px;
+  padding: 8px var(--pad-r) 16px var(--pad-l);
+}
+
+.optionRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 8px 0;
+}
+
+.optionText {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: 5px;
+}
+
+.optionHint {
+  color: var(--text-faint);
+}
+
+.optionControl {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.numInput {
+  width: 50px;
+  text-align: right;
+}
+
+.error {
+  color: var(--danger);
+}
+
+/* Narrow request pane (small windows, wide sidebar): icons go, labels stay. */
+@container (max-width: 470px) {
+  .subtab {
+    padding: 0 8px;
+  }
+
+  .subtab > :first-child {
+    display: none;
+  }
+
+  .subtabOn::after {
+    left: 8px;
+    right: 8px;
+  }
+}

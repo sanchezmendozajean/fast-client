@@ -1,0 +1,12 @@
+.badge {
+  flex: none;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  line-height: 1;
+}
+
+.fixed {
+  width: var(--w-method);
+  flex: 0 0 var(--w-method);
+}

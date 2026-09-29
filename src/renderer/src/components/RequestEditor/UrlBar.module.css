@@ -1,0 +1,118 @@
+.bar {
+  display: flex;
+  gap: 8px;
+  padding: 14px 16px 6px;
+  flex: none;
+}
+
+.box {
+  flex: 1;
+  min-width: 0;
+  height: var(--h-urlbar);
+  display: flex;
+  align-items: center;
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+}
+
+.box:focus-within {
+  box-shadow: inset 0 0 0 1px var(--border);
+}
+
+.method {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 0 8px 0 14px;
+  border-radius: var(--radius-md) 0 0 var(--radius-md);
+  font-family: var(--font-mono);
+  font-size: var(--fs-md);
+  font-weight: var(--fw-semibold);
+}
+
+.method:hover {
+  background: color-mix(in srgb, var(--surface-3) 50%, transparent);
+}
+
+.chevron {
+  color: var(--text-faint);
+}
+
+.methodItem {
+  font-family: var(--font-mono);
+  font-weight: var(--fw-semibold);
+}
+
+.sep {
+  width: 1px;
+  height: 20px;
+  flex: none;
+  background: var(--border);
+}
+
+.urlWrap {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+}
+
+.mirror,
+.url {
+  position: absolute;
+  inset: 0;
+  padding: 0 12px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-md);
+  line-height: var(--h-urlbar);
+  white-space: pre;
+  letter-spacing: 0;
+}
+
+.mirror {
+  overflow: hidden;
+  color: var(--text);
+  pointer-events: none;
+}
+
+.url {
+  width: 100%;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: transparent;
+  caret-color: var(--text);
+}
+
+.url::placeholder {
+  color: var(--text-faint);
+}
+
+.url::selection {
+  background: var(--accent-bg);
+  color: transparent;
+}
+
+.varOk {
+  border-radius: var(--radius-xs);
+  background: var(--var-ok-bg);
+  box-shadow:
+    -2px 0 0 var(--var-ok-bg),
+    2px 0 0 var(--var-ok-bg);
+  color: var(--var-ok);
+}
+
+.varMissing {
+  border-radius: var(--radius-xs);
+  background: var(--var-missing-bg);
+  box-shadow:
+    -2px 0 0 var(--var-missing-bg),
+    2px 0 0 var(--var-missing-bg);
+  color: var(--var-missing);
+}
+
+.send {
+  padding: 0 16px 0 14px;
+  gap: 8px;
+}

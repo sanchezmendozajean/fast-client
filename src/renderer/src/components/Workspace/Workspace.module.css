@@ -1,0 +1,170 @@
+.workspace {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--bg);
+  border-top-left-radius: var(--radius-lg);
+  box-shadow: inset 1px 1px 0 var(--border);
+}
+
+.request {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.split {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+.splitV {
+  flex-direction: row;
+}
+
+.splitH {
+  flex-direction: column;
+}
+
+.pane {
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Side by side (vertical divider): the divider provides the inner gap. */
+.reqPaneV {
+  --pad-l: 16px;
+  --pad-r: 0px;
+}
+
+.resPaneV {
+  --pad-l: 0px;
+  --pad-r: 16px;
+}
+
+/* Stacked (horizontal divider). */
+.reqPaneH,
+.resPaneH {
+  --pad-l: 16px;
+  --pad-r: 16px;
+}
+
+.divider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  touch-action: none;
+}
+
+.dividerV {
+  width: 14px;
+  cursor: col-resize;
+}
+
+.dividerH {
+  height: 14px;
+  cursor: row-resize;
+}
+
+.line {
+  position: absolute;
+  background: var(--border);
+}
+
+.dividerV .line {
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+}
+
+.dividerH .line {
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+}
+
+.grip {
+  position: relative;
+  border-radius: 2px;
+  background: var(--surface-3);
+  transition: background var(--dur) var(--ease);
+}
+
+.dividerV .grip {
+  width: 4px;
+  height: 36px;
+}
+
+.dividerH .grip {
+  width: 36px;
+  height: 4px;
+}
+
+.divider:hover .grip,
+.divider:active .grip {
+  background: var(--accent);
+}
+
+.empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 24px;
+  text-align: center;
+}
+
+.emptyLogo {
+  margin-bottom: 8px;
+  color: var(--surface-3);
+}
+
+.emptyTitle {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-semibold);
+}
+
+.emptyText {
+  color: var(--text-faint);
+}
+
+.shortcuts {
+  display: grid;
+  gap: 6px;
+  min-width: 280px;
+  margin: 20px 0 0;
+}
+
+.shortcut {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  color: var(--text-muted);
+}
+
+.shortcut dd {
+  margin: 0;
+}
+
+.kbd {
+  padding: 2px 6px;
+  border-radius: var(--radius-xs);
+  background: var(--surface-2);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+}

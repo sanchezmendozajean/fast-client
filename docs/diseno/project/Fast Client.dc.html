@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<style>body{margin:0;background:#e6e6e9;} a{color:#3553e0;} a:hover{color:#1f3bc4;}</style>
+</helmet>
+<section data-screen-label="Preferencias" style="padding:56px 56px 0;display:flex;flex-direction:column;gap:28px;font-family:Inter,system-ui,sans-serif;color:#1a1d24;">
+  <div style="display:flex;flex-direction:column;gap:6px;">
+    <div style="font-size:13px;color:#5d6675;letter-spacing:0.04em;text-transform:uppercase;">Fast Client · Ajustes</div>
+    <div style="font-size:28px;font-weight:600;letter-spacing:-0.02em;">Modal Preferencias</div>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:56px;align-items:flex-start;">
+
+    <div id="2a" style="display:flex;flex-direction:column;gap:12px;">
+      <div style="display:flex;align-items:center;gap:10px;font-size:14px;">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;padding:3px 8px;border-radius:6px;background:#1a1d24;color:#ffffff;">2a</span>
+        <span style="font-weight:500;">Oscuro · valores por defecto</span>
+      </div>
+      <div data-theme="dark" style="position:relative;width:1440px;height:900px;border-radius:10px;overflow:hidden;box-shadow:0 30px 80px rgb(10 14 30 / .28),0 0 0 1px rgb(0 0 0 / .4);--bg:#0f1115;--surface-1:#151820;--surface-2:#1b1f28;--surface-3:#232835;--border:#232833;--text:#e6e8ee;--text-muted:#8e97a7;--text-faint:#5c6474;--accent:#7c9cff;--accent-strong:#95afff;--on-accent:#0b1024;--success:#3fcf8e;--success-bg:rgb(63 207 142 / .12);--warning:#f5b544;--warning-bg:rgb(245 181 68 / .10);--danger:#f06a6a;--info:#5fb3f5;--var-ok:#3fcf8e;--var-ok-bg:rgb(63 207 142 / .12);--m-get:#3fcf8e;--m-post:#f5b544;--m-put:#5fb3f5;--m-patch:#b48cff;--m-delete:#f06a6a;--syn-key:#a9bcff;--syn-string:#8fd9b0;--syn-number:#f5c47a;--syn-keyword:#c7a4ff;--syn-punct:#6f7888;--shadow-float:0 10px 30px rgb(0 0 0 / .45),0 0 0 1px #262c38;--scrim:rgb(5 6 10 / .55);--font-ui:'Inter',system-ui,sans-serif;--font-mono:'JetBrains Mono',ui-monospace,monospace;">
+        <dc-import name="Workspace" hint-size="1440px,900px" style="width:1440px;height:900px;"></dc-import>
+        <div style="position:absolute;inset:0;background:var(--scrim);display:flex;align-items:center;justify-content:center;">
+          <dc-import name="Preferences" theme="dark" hint-size="448px,560px"></dc-import>
+        </div>
+      </div>
+    </div>
+
+    <div id="2b" style="display:flex;flex-direction:column;gap:12px;">
+      <div style="display:flex;align-items:center;gap:10px;font-size:14px;">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;padding:3px 8px;border-radius:6px;background:#1a1d24;color:#ffffff;">2b</span>
+        <span style="font-weight:500;">Claro · SSL desactivado</span>
+      </div>
+      <div data-theme="light" style="position:relative;width:1440px;height:900px;border-radius:10px;overflow:hidden;box-shadow:0 30px 80px rgb(10 14 30 / .16),0 0 0 1px rgb(0 0 0 / .08);--bg:#ffffff;--surface-1:#f5f6f8;--surface-2:#eef0f4;--surface-3:#e3e7ee;--border:#e3e6ec;--text:#1a1d24;--text-muted:#586170;--text-faint:#98a0ad;--accent:#4b6bfb;--accent-strong:#3553e0;--on-accent:#ffffff;--success:#16895a;--success-bg:rgb(22 137 90 / .10);--warning:#9a5c00;--warning-bg:rgb(184 110 0 / .10);--danger:#d23f3f;--info:#1f7fc9;--var-ok:#16895a;--var-ok-bg:rgb(22 137 90 / .10);--m-get:#16895a;--m-post:#b86e00;--m-put:#1f7fc9;--m-patch:#7c4ee0;--m-delete:#d23f3f;--syn-key:#3553e0;--syn-string:#16895a;--syn-number:#b86e00;--syn-keyword:#7c4ee0;--syn-punct:#8a93a3;--shadow-float:0 10px 30px rgb(20 30 60 / .14),0 0 0 1px #e1e5ec;--scrim:rgb(20 26 40 / .28);--font-ui:'Inter',system-ui,sans-serif;--font-mono:'JetBrains Mono',ui-monospace,monospace;">
+        <dc-import name="Workspace" hint-size="1440px,900px" style="width:1440px;height:900px;"></dc-import>
+        <div style="position:absolute;inset:0;background:var(--scrim);display:flex;align-items:center;justify-content:center;">
+          <dc-import name="Preferences" theme="light" ssl="{{ false }}" hint-size="448px,600px"></dc-import>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<section data-screen-label="Bloque A" style="padding:56px;display:flex;flex-direction:column;gap:28px;font-family:Inter,system-ui,sans-serif;color:#1a1d24;">
+  <div style="display:flex;flex-direction:column;gap:6px;">
+    <div style="font-size:13px;color:#5d6675;letter-spacing:0.04em;text-transform:uppercase;">Fast Client · Bloque A</div>
+    <div style="font-size:28px;font-weight:600;letter-spacing:-0.02em;">Pantalla principal</div>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:56px;align-items:flex-start;">
+
+    <div id="1a" style="display:flex;flex-direction:column;gap:12px;">
+      <div style="display:flex;align-items:center;gap:10px;font-size:14px;">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;padding:3px 8px;border-radius:6px;background:#1a1d24;color:#ffffff;">1a</span>
+        <span style="font-weight:500;">Tema oscuro</span>
+      </div>
+      <div data-theme="dark" style="width:1440px;height:900px;border-radius:10px;overflow:hidden;box-shadow:0 30px 80px rgb(10 14 30 / .28),0 0 0 1px rgb(0 0 0 / .4);--bg:#0f1115;--surface-1:#151820;--surface-2:#1b1f28;--surface-3:#232835;--border:#232833;--text:#e6e8ee;--text-muted:#8e97a7;--text-faint:#5c6474;--accent:#7c9cff;--accent-strong:#95afff;--on-accent:#0b1024;--success:#3fcf8e;--success-bg:rgb(63 207 142 / .12);--warning:#f5b544;--danger:#f06a6a;--info:#5fb3f5;--var-ok:#3fcf8e;--var-ok-bg:rgb(63 207 142 / .12);--m-get:#3fcf8e;--m-post:#f5b544;--m-put:#5fb3f5;--m-patch:#b48cff;--m-delete:#f06a6a;--syn-key:#a9bcff;--syn-string:#8fd9b0;--syn-number:#f5c47a;--syn-keyword:#c7a4ff;--syn-punct:#6f7888;--font-ui:'Inter',system-ui,sans-serif;--font-mono:'JetBrains Mono',ui-monospace,monospace;">
+        <dc-import name="Workspace" hint-size="1440px,900px" style="width:1440px;height:900px;"></dc-import>
+      </div>
+    </div>
+
+    <div id="1b" style="display:flex;flex-direction:column;gap:12px;">
+      <div style="display:flex;align-items:center;gap:10px;font-size:14px;">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;padding:3px 8px;border-radius:6px;background:#1a1d24;color:#ffffff;">1b</span>
+        <span style="font-weight:500;">Tema claro</span>
+      </div>
+      <div data-theme="light" style="width:1440px;height:900px;border-radius:10px;overflow:hidden;box-shadow:0 30px 80px rgb(10 14 30 / .16),0 0 0 1px rgb(0 0 0 / .08);--bg:#ffffff;--surface-1:#f5f6f8;--surface-2:#eef0f4;--surface-3:#e3e7ee;--border:#e3e6ec;--text:#1a1d24;--text-muted:#586170;--text-faint:#98a0ad;--accent:#4b6bfb;--accent-strong:#3553e0;--on-accent:#ffffff;--success:#16895a;--success-bg:rgb(22 137 90 / .10);--warning:#b86e00;--danger:#d23f3f;--info:#1f7fc9;--var-ok:#16895a;--var-ok-bg:rgb(22 137 90 / .10);--m-get:#16895a;--m-post:#b86e00;--m-put:#1f7fc9;--m-patch:#7c4ee0;--m-delete:#d23f3f;--syn-key:#3553e0;--syn-string:#16895a;--syn-number:#b86e00;--syn-keyword:#7c4ee0;--syn-punct:#8a93a3;--font-ui:'Inter',system-ui,sans-serif;--font-mono:'JetBrains Mono',ui-monospace,monospace;">
+        <dc-import name="Workspace" hint-size="1440px,900px" style="width:1440px;height:900px;"></dc-import>
+      </div>
+    </div>
+
+  </div>
+</section>
+</x-dc>
+</body>
+</html>

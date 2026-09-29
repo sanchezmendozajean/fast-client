@@ -1,0 +1,8 @@
+.hint {
+  margin: 0 0 8px;
+  color: var(--text-faint);
+}
+
+.spacer {
+  flex: 1;
+}

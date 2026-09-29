@@ -1,0 +1,104 @@
+.bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 0 0 var(--h-titlebar);
+  height: var(--h-titlebar);
+  /* keep clear of the native window controls overlay */
+  padding-right: calc(100vw - env(titlebar-area-x, 0px) - env(titlebar-area-width, 100vw));
+  background: var(--surface-1);
+  -webkit-app-region: drag;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 12px 0 14px;
+}
+
+.logo {
+  color: var(--accent);
+}
+
+.brandName {
+  font-weight: var(--fw-semibold);
+  letter-spacing: -0.01em;
+}
+
+.menuBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 28px;
+  padding: 0 10px 0 8px;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  -webkit-app-region: no-drag;
+  transition:
+    background var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+}
+
+.menuBtn + .menuBtn {
+  margin-left: 2px;
+}
+
+.menuBtn:hover,
+.menuBtn.open {
+  background: var(--surface-3);
+  color: var(--text);
+}
+
+.profile {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 40vw;
+  transform: translateX(-50%);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--fs-md);
+  -webkit-app-region: no-drag;
+}
+
+.profileName {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dirty {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--text-muted);
+}
+
+.zoomBadge {
+  position: absolute;
+  top: calc(var(--h-titlebar) + 8px);
+  left: 50%;
+  z-index: 700;
+  padding: 4px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-3);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: var(--fs-md);
+  box-shadow: var(--shadow-float);
+  transform: translateX(-50%);
+  pointer-events: none;
+  animation: badgeIn var(--dur) var(--ease);
+}
+
+@keyframes badgeIn {
+  from {
+    opacity: 0;
+  }
+}
