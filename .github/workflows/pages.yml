@@ -1,11 +1,12 @@
-# Publishes site/ (the landing page) to GitHub Pages on every push to main that touches it.
+# Publishes site/ (the landing page) and the user docs built from site-docs/ to GitHub Pages
+# on every push to main that touches them.
 # One-time setup: Settings → Pages → Source: "GitHub Actions".
 name: Pages
 
 on:
   push:
     branches: [main]
-    paths: ['site/**', '.github/workflows/pages.yml']
+    paths: ['site/**', 'site-docs/**', '.github/workflows/pages.yml']
   workflow_dispatch:
 
 permissions:
@@ -25,6 +26,16 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: site-docs/package-lock.json
+      # VitePress writes the docs into site/docs, next to the landing.
+      - run: npm ci
+        working-directory: site-docs
+      - run: npm run build
+        working-directory: site-docs
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

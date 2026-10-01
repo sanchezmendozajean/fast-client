@@ -70,3 +70,12 @@ Decisiones no cubiertas explícitamente por los docs, tomadas con la opción má
 - Cuando la descarga termina, un toast ofrece **Reiniciar ahora**. Ese botón cierra con el flujo normal (guardado final del perfil) y, en lugar de `app.quit()`, llama a `quitAndInstall(silent, reabrir)`.
 - En desarrollo y en los e2e (`FASTCLIENT_HOME`) el servicio está desactivado y nunca toca la red.
 - La landing vive en `site/` y se publica en GitHub Pages con `.github/workflows/pages.yml`. `docs/` sigue siendo solo para especificaciones. `site/` no entra en el instalador ni en ESLint.
+
+## 2026-10-01 · Documentación de usuario
+
+- La guía de uso vive en `site-docs/` y se genera con **VitePress**, con su propio `package.json` para no mezclar sus dependencias con las de la app. `npm run dev` / `npm run build` dentro de `site-docs/`.
+- El build escribe en `site/docs/` (ignorado por git). El workflow de Pages lo compila antes de publicar `site/`, así que queda en `/fast-client/docs/` junto a la landing. `site-docs/` no entra en el instalador ni en ESLint.
+- Tema adaptado a los tokens de la landing. Inter viene incluida en el tema de VitePress; JetBrains Mono se sirve local desde `site-docs/public/fonts`. Búsqueda local, sin servicios externos.
+- El código en línea se marca con `v-pre` (en `config.mts`) para que Vue no interprete los `{{variables}}` de los ejemplos. Los `<span class="var">` escritos a mano llevan `v-pre`.
+- La autenticación se documenta dentro de «Hacer una petición» en lugar de en una página propia, porque es corta.
+- Los anclajes de los títulos usan el `slugify` de VitePress más `¿ ¡ « »`, para que las preguntas frecuentes no generen enlaces como `#¿maneja-cookies…`.

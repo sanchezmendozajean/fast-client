@@ -1,0 +1,129 @@
+/* Fast Client docs. Palette and type mirror site/styles.css and src/renderer/src/styles/tokens.css. */
+
+@font-face { font-family: 'JetBrains Mono'; font-weight: 400; font-display: swap; src: url('/fonts/jetbrains-mono-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'JetBrains Mono'; font-weight: 500; font-display: swap; src: url('/fonts/jetbrains-mono-latin-500-normal.woff2') format('woff2'); }
+
+:root {
+  --vp-font-family-base: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif; /* Inter ships with the VitePress theme */
+  --vp-font-family-mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+
+  --vp-c-bg: #ffffff;
+  --vp-c-bg-alt: #f5f6f8;
+  --vp-c-bg-soft: #eef0f4;
+  --vp-c-bg-elv: #ffffff;
+  --vp-c-divider: #e3e6ec;
+  --vp-c-gutter: #e3e6ec;
+  --vp-c-border: #d6dae2;
+  --vp-c-text-1: #1a1d24;
+  --vp-c-text-2: #586170;
+  --vp-c-text-3: #8a93a3;
+
+  --vp-c-brand-1: #3553e0;
+  --vp-c-brand-2: #4b6bfb;
+  --vp-c-brand-3: #4b6bfb;
+  --vp-c-brand-soft: rgb(75 107 251 / 0.1);
+  --vp-button-brand-text: #ffffff;
+
+  --vp-code-block-bg: #f5f6f8;
+  --vp-code-color: #3553e0;
+
+  /* Fast Client semantic colours, used by the method badges. */
+  --fc-get: #16895a;
+  --fc-post: #b86e00;
+  --fc-put: #1f7fc9;
+  --fc-patch: #7c4ee0;
+  --fc-delete: #d23f3f;
+  --fc-other: #586170;
+  --fc-var-ok: #16895a;
+  --fc-var-ok-bg: rgb(22 137 90 / 0.1);
+  --fc-var-missing: #d23f3f;
+  --fc-var-missing-bg: rgb(210 63 63 / 0.1);
+}
+
+.dark {
+  --vp-c-bg: #0f1115;
+  --vp-c-bg-alt: #151820;
+  --vp-c-bg-soft: #1b1f28;
+  --vp-c-bg-elv: #1b1f28;
+  --vp-c-divider: #232833;
+  --vp-c-gutter: #0b0d11;
+  --vp-c-border: #2c3240;
+  --vp-c-text-1: #e6e8ee;
+  --vp-c-text-2: #8e97a7;
+  --vp-c-text-3: #6b7383;
+
+  --vp-c-brand-1: #7c9cff;
+  --vp-c-brand-2: #95afff;
+  --vp-c-brand-3: #7c9cff;
+  --vp-c-brand-soft: rgb(124 156 255 / 0.12);
+  --vp-button-brand-text: #0b1024;
+  --vp-button-brand-hover-text: #0b1024;
+  --vp-button-brand-active-text: #0b1024;
+
+  --vp-code-block-bg: #151820;
+  --vp-code-color: #a9bcff;
+
+  --fc-get: #3fcf8e;
+  --fc-post: #f5b544;
+  --fc-put: #5fb3f5;
+  --fc-patch: #b48cff;
+  --fc-delete: #f06a6a;
+  --fc-other: #8a93a3;
+  --fc-var-ok: #3fcf8e;
+  --fc-var-ok-bg: rgb(63 207 142 / 0.12);
+  --fc-var-missing: #f06a6a;
+  --fc-var-missing-bg: rgb(240 106 106 / 0.12);
+}
+
+.vp-doc h1,
+.vp-doc h2,
+.vp-doc h3 {
+  letter-spacing: -0.02em;
+}
+
+/* Keyboard shortcuts, styled like the kbd hints inside the app. */
+.vp-doc kbd {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: var(--vp-c-bg-soft);
+  box-shadow: inset 0 0 0 1px var(--vp-c-divider), inset 0 -1px 0 var(--vp-c-divider);
+  color: var(--vp-c-text-1);
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.8em;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+
+/* HTTP method badges: <span class="method get">GET</span> */
+.vp-doc .method {
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.82em;
+  font-weight: 600;
+  color: var(--fc-other);
+}
+.vp-doc .method.get { color: var(--fc-get); }
+.vp-doc .method.post { color: var(--fc-post); }
+.vp-doc .method.put { color: var(--fc-put); }
+.vp-doc .method.patch { color: var(--fc-patch); }
+.vp-doc .method.delete { color: var(--fc-delete); }
+
+/* {{variable}} chips, as highlighted in the URL bar: <span class="var">…</span> / <span class="var missing">…</span> */
+.vp-doc .var {
+  padding: 1px 3px;
+  border-radius: 4px;
+  background: var(--fc-var-ok-bg);
+  color: var(--fc-var-ok);
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.875em;
+}
+.vp-doc .var.missing {
+  background: var(--fc-var-missing-bg);
+  color: var(--fc-var-missing);
+}
+
+/* UI labels the reader has to find on screen. */
+.vp-doc .ui {
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+}
