@@ -36,6 +36,14 @@ jobs:
       - run: npm run lint
       - run: npm test
 
+      # electron-builder uploads artifacts in parallel and, if the release does not exist yet,
+      # can race and create duplicates. Creating it first makes every upload reuse the same one.
+      - name: Create the release if missing
+        shell: bash
+        run: gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1 || gh release create "$GITHUB_REF_NAME" --title "${GITHUB_REF_NAME#v}" --notes "See CHANGELOG.md"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Build and publish
         run: npm run release
         env:
