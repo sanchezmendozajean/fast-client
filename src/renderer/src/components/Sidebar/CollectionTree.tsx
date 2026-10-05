@@ -13,7 +13,7 @@ import { memo, useMemo, useRef, useState } from 'react';
 import type { Collection, Id, RequestDef } from '@shared/types';
 import { deleteCollectionWithConfirm, deleteRequestWithConfirm } from '../../actions/tree-actions';
 import { t } from '../../i18n/es';
-import { EMPTY_COLLECTIONS, useProfileStore } from '../../store/profile-store';
+import { EMPTY_COLLECTIONS, EMPTY_IDS, useProfileStore } from '../../store/profile-store';
 import { useUiStore } from '../../store/ui-store';
 import { Icon } from '../Icon/Icon';
 import { IconButton } from '../common/Button';
@@ -54,12 +54,13 @@ interface RowProps {
   selected: boolean;
   tabbable: boolean;
   renaming: boolean;
+  tabOpen: boolean;
   query: string;
   dndDisabled: boolean;
   onVariables: (id: Id) => void;
 }
 
-const Row = memo(function Row({ node, selected, tabbable, renaming, query, dndDisabled, onVariables }: RowProps): JSX.Element {
+const Row = memo(function Row({ node, selected, tabbable, renaming, tabOpen, query, dndDisabled, onVariables }: RowProps): JSX.Element {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: node.key,
     disabled: dndDisabled || renaming,
@@ -156,7 +157,7 @@ const Row = memo(function Row({ node, selected, tabbable, renaming, query, dndDi
     <div
       {...common}
       aria-level={2}
-      className={`${styles.row} ${styles.request} ${selected ? styles.selected : ''} ${isDragging ? styles.dragging : ''}`}
+      className={`${styles.row} ${styles.request} ${tabOpen ? styles.openTab : ''} ${selected ? styles.selected : ''} ${isDragging ? styles.dragging : ''}`}
       onClick={() => store().openTab(r.id)}
       onDoubleClick={() => store().startRename(r.id)}
       onContextMenu={(e) => {
@@ -187,6 +188,7 @@ export function CollectionTree({ onVariables }: { onVariables: (id: Id) => void 
   const collections = useProfileStore((s) => s.profile?.collections ?? EMPTY_COLLECTIONS);
   const selection = useProfileStore((s) => s.selection);
   const renaming = useProfileStore((s) => (s.renamingIn === 'tree' ? s.renaming : null));
+  const openTabs = useProfileStore((s) => s.profile?.workspace.openTabs ?? EMPTY_IDS);
   const query = useUiStore((s) => s.search);
   const [draggingCollection, setDraggingCollection] = useState<Id | null>(null);
   const treeRef = useRef<HTMLDivElement>(null);
@@ -318,6 +320,7 @@ export function CollectionTree({ onVariables }: { onVariables: (id: Id) => void 
                   selected={n.key === selectedKey}
                   tabbable={n.key === focusKey}
                   renaming={renaming === id}
+                  tabOpen={n.kind === 'request' && openTabs.includes(id)}
                   query={query}
                   dndDisabled={dndDisabled}
                   onVariables={onVariables}

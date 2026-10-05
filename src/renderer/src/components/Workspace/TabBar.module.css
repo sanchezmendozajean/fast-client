@@ -82,10 +82,25 @@
   opacity: 0.85;
 }
 
+.label {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.2;
+}
+
 .name {
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.collection {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 10px;
+  color: var(--text-faint);
 }
 
 .end {

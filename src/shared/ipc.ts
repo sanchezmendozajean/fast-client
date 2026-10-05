@@ -29,6 +29,7 @@ export interface InvokeChannels {
   'settings:update': { args: [patch: Partial<AppSettings>]; result: AppSettings };
   'app:zoom': { args: [dir: 'in' | 'out' | 'reset']; result: number };
   'app:quit': { args: []; result: void };
+  'window:toggle-maximize': { args: []; result: void };
   'http:send': { args: [payload: { requestId: string; resolved: ResolvedRequest }]; result: HttpResult };
   'http:cancel': { args: [payload: { requestId: string }]; result: void };
   'response:save': { args: [payload: { suggestedName: string; bytesBase64: string }]; result: boolean };
@@ -72,6 +73,7 @@ export const INVOKE_CHANNELS = [
   'settings:update',
   'app:zoom',
   'app:quit',
+  'window:toggle-maximize',
   'http:send',
   'http:cancel',
   'response:save',

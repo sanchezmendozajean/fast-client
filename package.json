@@ -1,7 +1,7 @@
 {
   "name": "fast-client",
   "productName": "Fast Client",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Cliente HTTP de escritorio minimalista",
   "private": true,
   "main": "./out/main/index.js",

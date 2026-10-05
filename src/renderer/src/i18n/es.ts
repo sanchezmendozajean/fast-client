@@ -27,7 +27,7 @@ export const t = {
   },
   titlebar: {
     unsaved: 'Cambios sin guardar',
-    pathTooltip: (p: string) => `${p}\nDoble clic: ir al archivo`,
+    pathTooltip: (p: string) => `${p}\nCtrl + doble clic: ir al archivo`,
   },
   sidebar: {
     search: 'Buscar',

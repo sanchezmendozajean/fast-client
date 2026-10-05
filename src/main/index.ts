@@ -153,6 +153,11 @@ function registerIpc(): void {
     return s;
   });
   handle('app:zoom', (dir) => zoom(dir));
+  handle('window:toggle-maximize', () => {
+    if (!win) return;
+    if (win.isMaximized()) win.unmaximize();
+    else win.maximize();
+  });
   handle('app:quit', () => {
     win?.close();
   });

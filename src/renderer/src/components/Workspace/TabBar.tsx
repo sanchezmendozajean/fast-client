@@ -46,6 +46,7 @@ function tabMenu(id: Id): MenuEntry[] {
 
 function Tab({ id, active }: { id: Id; active: boolean }): JSX.Element | null {
   const req = useProfileStore((s) => findRequest(s.profile, id)?.request);
+  const collectionName = useProfileStore((s) => findRequest(s.profile, id)?.collection.name);
   const dirty = useProfileStore((s) => id in s.dirtyRequests);
   const renaming = useProfileStore((s) => s.renaming === id && s.renamingIn === 'tab');
   const showMenu = useUiStore((s) => s.showContextMenu);
@@ -86,13 +87,16 @@ function Tab({ id, active }: { id: Id; active: boolean }): JSX.Element | null {
       data-tooltip={req.url || undefined}
     >
       <MethodBadge method={req.method} />
-      {renaming ? (
-        <InlineRename value={req.name} onCommit={(n) => void s().renameRequest(id, n)} onCancel={() => s().stopRename()} />
-      ) : (
-        <span className={styles.name} onDoubleClick={() => s().startRename(id, 'tab')}>
-          {req.name}
-        </span>
-      )}
+      <span className={styles.label}>
+        {renaming ? (
+          <InlineRename value={req.name} onCommit={(n) => void s().renameRequest(id, n)} onCancel={() => s().stopRename()} />
+        ) : (
+          <span className={styles.name} onDoubleClick={() => s().startRename(id, 'tab')}>
+            {req.name}
+          </span>
+        )}
+        <span className={styles.collection}>{collectionName}</span>
+      </span>
       <span className={styles.end}>
         {dirty && <span className={styles.dot} aria-label={t.titlebar.unsaved} role="img" />}
         <button
@@ -162,7 +166,7 @@ export function TabBar(): JSX.Element {
           if (scroller.current && e.deltaY !== 0 && e.deltaX === 0) scroller.current.scrollLeft += e.deltaY;
         }}
       >
-        <DndContext sensors={sensors} collisionDetection={closestCenter} modifiers={[restrictToHorizontalAxis]} onDragEnd={onDragEnd}>
+        <DndContext sensors={sensors} autoScroll={false} collisionDetection={closestCenter} modifiers={[restrictToHorizontalAxis]} onDragEnd={onDragEnd}>
           <SortableContext items={[...tabs]} strategy={horizontalListSortingStrategy}>
             {tabs.map((id) => (
               <Tab key={id} id={id} active={id === active} />

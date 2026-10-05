@@ -92,6 +92,10 @@
   text-overflow: ellipsis;
 }
 
+.openTab .reqName {
+  font-weight: var(--fw-bold);
+}
+
 .selected,
 .selected:hover {
   background: var(--surface-3);

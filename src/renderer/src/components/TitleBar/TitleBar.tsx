@@ -186,7 +186,11 @@ export function TitleBar(): JSX.Element {
         <div
           className={styles.profile}
           data-tooltip={t.titlebar.pathTooltip(profilePath)}
-          onDoubleClick={() => void fileReveal()}
+          onDoubleClick={(e) => {
+            // Plain double-click behaves like the rest of the bar (maximize/restore); Ctrl reveals the file.
+            if (e.ctrlKey) void fileReveal();
+            else void window.api.invoke('window:toggle-maximize');
+          }}
         >
           <span className={styles.profileName}>{basename(profilePath)}</span>
           {dirty && <span className={styles.dirty} aria-label={t.titlebar.unsaved} role="img" />}

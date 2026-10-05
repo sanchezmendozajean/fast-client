@@ -60,7 +60,14 @@ const highlight = HighlightStyle.define([
 const theme = EditorView.theme({
   '&': { height: '100%', color: 'var(--text)', backgroundColor: 'transparent', fontSize: 'var(--fs-md)' },
   '&.cm-focused': { outline: 'none' },
-  '.cm-scroller': { fontFamily: 'var(--font-mono)', lineHeight: 'var(--lh-code)', overflow: 'auto' },
+  // Ligatures off: JetBrains Mono fuses "..." into one glyph and hides dots while typing.
+  '.cm-scroller': {
+    fontFamily: 'var(--font-mono)',
+    lineHeight: 'var(--lh-code)',
+    overflow: 'auto',
+    fontVariantLigatures: 'none',
+    fontFeatureSettings: '"liga" 0, "calt" 0',
+  },
   '.cm-content': { padding: '10px 0', caretColor: 'var(--text)' },
   '.cm-line': { padding: '0 12px 0 2px' },
   '.cm-gutters': { backgroundColor: 'transparent', border: 'none', color: 'var(--text-faint)' },
