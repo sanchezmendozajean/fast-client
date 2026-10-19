@@ -10,6 +10,11 @@
   box-shadow: inset 1px 1px 0 var(--border);
 }
 
+/* Sidebar hidden: the workspace touches the window edge, so no rounded corner. */
+.flush {
+  border-top-left-radius: 0;
+}
+
 .request {
   display: flex;
   flex-direction: column;

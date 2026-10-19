@@ -10,6 +10,8 @@ export interface ModalProps {
   icon?: string;
   iconTone?: 'muted' | 'accent' | 'danger';
   width?: number;
+  /** Fixed height in px (still capped to the viewport); the body scrolls. */
+  height?: number;
   onClose: () => void;
   /** Enter outside inputs/buttons triggers the primary action. */
   onEnter?: () => void;
@@ -28,6 +30,7 @@ export function Modal({
   icon,
   iconTone = 'muted',
   width = 440,
+  height,
   onClose,
   onEnter,
   footer,
@@ -92,7 +95,7 @@ export function Modal({
         aria-label={title}
         tabIndex={-1}
         className={styles.card}
-        style={{ width }}
+        style={{ width, height }}
         onKeyDown={onKeyDown}
       >
         <div className={styles.header}>

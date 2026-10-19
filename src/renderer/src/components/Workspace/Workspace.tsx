@@ -1,6 +1,7 @@
 import { useShallow } from 'zustand/react/shallow';
 import { t } from '../../i18n/es';
 import { findRequest, resetSize, saveIfResized, useProfileStore } from '../../store/profile-store';
+import { useUiStore } from '../../store/ui-store';
 import { Icon } from '../Icon/Icon';
 import { RequestPanel } from '../RequestEditor/RequestPanel';
 import { UrlBar } from '../RequestEditor/UrlBar';
@@ -100,8 +101,9 @@ function ActiveRequest(): JSX.Element | null {
 }
 
 export function Workspace(): JSX.Element {
+  const collapsed = useUiStore((s) => s.sidebarCollapsed);
   return (
-    <main className={styles.workspace}>
+    <main className={`${styles.workspace} ${collapsed ? styles.flush : ''}`}>
       <TabBar />
       <ActiveRequest />
     </main>

@@ -14,6 +14,13 @@
   padding: 0 10px 0 12px;
 }
 
+/* Same x as the expand button in the tab bar, so the toggle never moves. */
+.collapse {
+  flex: none;
+  align-self: center;
+  margin-left: -4px;
+}
+
 .search {
   flex: 1;
   min-width: 0;
@@ -73,7 +80,10 @@
 }
 
 .sectionTitle {
-  padding: 18px 20px 6px;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 10px 10px 2px 20px;
   color: var(--text-faint);
   font-size: var(--fs-sm);
   font-weight: var(--fw-medium);
@@ -88,10 +98,9 @@
   overflow-x: hidden;
 }
 
-.footer {
-  display: flex;
-  gap: 2px;
-  padding: 4px 10px 0;
+.sectionLabel {
+  flex: 1;
+  min-width: 0;
 }
 
 .resize {

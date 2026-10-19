@@ -101,18 +101,29 @@ export function Sidebar(): JSX.Element {
   return (
     <aside className={styles.sidebar} style={{ width }} aria-label={t.sidebar.collections}>
       <div className={styles.header}>
+        <IconButton
+          icon="left_panel_close"
+          label={t.sidebar.collapse}
+          tone="faint"
+          onSurface1
+          className={styles.collapse}
+          onClick={toggleSidebar}
+        />
         <SearchBox />
+      </div>
+
+      <div className={styles.sectionTitle}>
+        <span className={styles.sectionLabel}>{t.sidebar.collections}</span>
         <IconButton
           icon="create_new_folder"
           label={t.sidebar.newCollection}
-          box={32}
+          box={26}
+          tone="faint"
           onSurface1
           disabled={!hasProfile}
           onClick={() => void createCollection()}
         />
       </div>
-
-      <div className={styles.sectionTitle}>{t.sidebar.collections}</div>
 
       <div className={styles.scroll}>
         {empty ? (
@@ -129,9 +140,6 @@ export function Sidebar(): JSX.Element {
         )}
       </div>
 
-      <div className={styles.footer}>
-        <IconButton icon="left_panel_close" label={t.sidebar.collapse} box={30} tone="faint" onSurface1 onClick={toggleSidebar} />
-      </div>
       <ResizeHandle />
       {varsFor && <VariablesDialog collectionId={varsFor} onClose={() => setVarsFor(null)} />}
     </aside>

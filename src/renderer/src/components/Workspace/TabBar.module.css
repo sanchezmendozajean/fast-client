@@ -9,7 +9,8 @@
 }
 
 .expand {
-  margin: 0 6px 3px -2px;
+  /* Same x/y as the sidebar's collapse button (centered on the 32px search row). */
+  margin: 0 6px 10px -2px;
 }
 
 .scroller {

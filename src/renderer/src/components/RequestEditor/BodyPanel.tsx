@@ -75,12 +75,6 @@ export function BodyPanel({ request }: { request: RequestDef }): JSX.Element {
           options={options}
           onChange={(mode) => update(request.id, (b) => ({ ...b, mode }))}
         />
-        {invalid && (
-          <span className={styles.invalid}>
-            <Icon name="warning" size={15} />
-            {t.editor.invalidJson}
-          </span>
-        )}
         {(body.mode === 'json' || body.mode === 'xml') && (
           <Button
             variant="ghost"
@@ -98,15 +92,23 @@ export function BodyPanel({ request }: { request: RequestDef }): JSX.Element {
       {body.mode === 'none' && <div className={styles.emptyNote}>{t.editor.noBody}</div>}
 
       {(body.mode === 'json' || body.mode === 'text' || body.mode === 'xml') && (
-        <div className={styles.codeArea}>
-          <CodeEditor
-            key={request.id}
-            ariaLabel={t.editor.body}
-            value={body.raw}
-            language={language}
-            onChange={(raw) => update(request.id, (b) => ({ ...b, raw }))}
-          />
-        </div>
+        <>
+          <div className={styles.codeArea}>
+            <CodeEditor
+              key={request.id}
+              ariaLabel={t.editor.body}
+              value={body.raw}
+              language={language}
+              onChange={(raw) => update(request.id, (b) => ({ ...b, raw }))}
+            />
+            {invalid && (
+              <div className={styles.invalidBar} role="alert">
+                <Icon name="warning" size={15} />
+                {t.editor.invalidJson}
+              </div>
+            )}
+          </div>
+        </>
       )}
 
       {body.mode === 'form-urlencoded' && (

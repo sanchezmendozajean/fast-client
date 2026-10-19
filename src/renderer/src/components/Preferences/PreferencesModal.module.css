@@ -1,13 +1,21 @@
 .sections {
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 12px;
+}
+
+.sections > :first-child {
+  align-self: flex-start;
 }
 
 .section {
   display: flex;
   flex-direction: column;
   gap: 2px;
+}
+
+.section[hidden] {
+  display: none;
 }
 
 .sectionTitle {

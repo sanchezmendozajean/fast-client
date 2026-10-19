@@ -18,6 +18,8 @@ import styles from './PreferencesModal.module.css';
 
 const MB = 1024 * 1024;
 
+type PrefsTab = 'network' | 'interface' | 'profiles' | 'updates';
+
 interface Draft {
   timeoutSeconds: string;
   maxRenderMb: string;
@@ -104,6 +106,7 @@ function PreferencesDialog(): JSX.Element {
   const appVersion = useUiStore((s) => s.appVersion);
   const close = (): void => useUiStore.getState().setPreferencesOpen(false);
   const original = useRef(settings);
+  const [tab, setTab] = useState<PrefsTab>('network');
   const [draft, setDraft] = useState<Draft>(() => toDraft(settings));
   const errors = useMemo(() => validatePreferences(draft), [draft]);
   const hasErrors = Object.keys(errors).length > 0;
@@ -166,6 +169,7 @@ function PreferencesDialog(): JSX.Element {
       title={t.prefs.title}
       icon="settings_applications"
       width={560}
+      height={520}
       onClose={cancel}
       onEnter={() => void save()}
       footer={
@@ -184,11 +188,21 @@ function PreferencesDialog(): JSX.Element {
       }
     >
       <div className={styles.sections}>
-        <section className={styles.section}>
-          <div className={styles.sectionTitle}>
-            <Icon name="lan" size={16} />
-            <span>{t.prefs.network}</span>
-          </div>
+        <Segmented<PrefsTab>
+          label={t.prefs.title}
+          surface={2}
+          size="md"
+          value={tab}
+          onChange={setTab}
+          options={[
+            { value: 'network', label: t.prefs.network, icon: 'lan' },
+            { value: 'interface', label: t.prefs.interface, icon: 'palette' },
+            { value: 'profiles', label: t.prefs.profiles, icon: 'folder_managed' },
+            { value: 'updates', label: t.prefs.updates, icon: 'update' },
+          ]}
+        />
+
+        <section className={styles.section} hidden={tab !== 'network'}>
 
           <div className={`${styles.row} ${styles.rowTop}`}>
             <div className={`${styles.text} ${styles.textTop}`}>
@@ -258,11 +272,7 @@ function PreferencesDialog(): JSX.Element {
           </div>
         </section>
 
-        <section className={styles.section}>
-          <div className={styles.sectionTitle}>
-            <Icon name="palette" size={16} />
-            <span>{t.prefs.interface}</span>
-          </div>
+        <section className={styles.section} hidden={tab !== 'interface'}>
           <div className={styles.row}>
             <span className={styles.text}>{t.prefs.theme}</span>
             <Segmented<ThemeSetting>
@@ -289,11 +299,7 @@ function PreferencesDialog(): JSX.Element {
           </div>
         </section>
 
-        <section className={styles.section}>
-          <div className={styles.sectionTitle}>
-            <Icon name="folder_managed" size={16} />
-            <span>{t.prefs.profiles}</span>
-          </div>
+        <section className={styles.section} hidden={tab !== 'profiles'}>
           <div className={styles.column}>
             <span>{t.prefs.currentProfile}</span>
             <div className={styles.inline}>
@@ -319,11 +325,7 @@ function PreferencesDialog(): JSX.Element {
           </div>
         </section>
 
-        <section className={styles.section}>
-          <div className={styles.sectionTitle}>
-            <Icon name="update" size={16} />
-            <span>{t.prefs.updates}</span>
-          </div>
+        <section className={styles.section} hidden={tab !== 'updates'}>
           <div className={styles.row}>
             <div className={styles.text}>
               <span>{t.prefs.autoUpdate}</span>

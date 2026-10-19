@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.1.2
+
+### Novedades
+- Preferencias ahora se organiza en pestañas (Red, Interfaz, Perfiles, Actualizaciones) y el modal tiene un tamaño fijo, en lugar de crecer con su contenido.
+- El botón para contraer la barra lateral está ahora a la izquierda del buscador, en la misma posición que el de expandirla, de modo que no cambia de lugar al alternar.
+- El botón de nueva colección pasó a la fila de la etiqueta «Colecciones», lo que deja el buscador más ancho.
+
+### Correcciones
+- El aviso «JSON no válido» ya no desplaza el botón «Formatear» ni cambia el tamaño del editor: ahora es una franja roja con texto blanco pegada al borde inferior del editor.
+- Con la barra lateral contraída, el área de pestañas ya no muestra la esquina superior izquierda redondeada.
+
 ## v0.1.1
 
 ### Novedades
