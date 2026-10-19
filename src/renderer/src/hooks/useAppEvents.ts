@@ -63,6 +63,7 @@ export function useAppEvents(): void {
       }),
       window.api.on('menu:command', runMenuCommand),
       window.api.on('app:toast', (toast) => useUiStore.getState().pushToast(toast)),
+      window.api.on('update:phase', (phase) => useUiStore.getState().setUpdatePhase(phase)),
       window.api.on('app:open-path', (path) => void fileOpen(path)),
       window.api.on('settings:changed', (s) => {
         const ui = useUiStore.getState();

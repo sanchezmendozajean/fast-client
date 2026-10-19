@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { UpdateService, type UpdaterLike } from '../../src/main/services/update-service';
-import type { ToastMessage } from '../../src/shared/types';
+import type { ToastMessage, UpdatePhase } from '../../src/shared/types';
 
 type CheckResult = Awaited<ReturnType<UpdaterLike['checkForUpdates']>>;
 
@@ -31,9 +31,16 @@ function fakeUpdater(result: () => Promise<CheckResult>): UpdaterLike & {
 
 function setup(result: () => Promise<CheckResult>, enabled = true) {
   const toasts: ToastMessage[] = [];
+  const phases: UpdatePhase[] = [];
   const updater = fakeUpdater(result);
-  const svc = new UpdateService({ updater, enabled, currentVersion: '0.1.0', toast: (t) => void toasts.push(t) });
-  return { svc, updater, toasts };
+  const svc = new UpdateService({
+    updater,
+    enabled,
+    currentVersion: '0.1.0',
+    toast: (t) => void toasts.push(t),
+    onPhase: (p) => void phases.push(p),
+  });
+  return { svc, updater, toasts, phases };
 }
 
 const none = (): Promise<CheckResult> => Promise.resolve({ isUpdateAvailable: false, updateInfo: { version: '0.1.0' } });
@@ -88,6 +95,22 @@ describe('UpdateService', () => {
     await svc.check(true);
     expect(updater.checks).toBe(0);
     expect(toasts[1]?.action?.command).toBe('install-update');
+  });
+
+  it('reports phases: checking, then downloading until the download finishes', async () => {
+    const { svc, updater, phases } = setup(found);
+    await svc.check(true);
+    expect(phases).toEqual(['checking', 'downloading']);
+    updater.emitDownloaded('0.2.0');
+    expect(phases).toEqual(['checking', 'downloading', 'ready']);
+  });
+
+  it('goes back to idle when there is nothing new or the check fails', async () => {
+    for (const r of [none, offline]) {
+      const { svc, phases } = setup(r);
+      await svc.check(true);
+      expect(phases).toEqual(['checking', 'idle']);
+    }
   });
 
   it('installs silently and relaunches the app', () => {

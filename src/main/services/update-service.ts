@@ -1,4 +1,4 @@
-import type { ToastMessage } from '../../shared/types';
+import type { ToastMessage, UpdatePhase } from '../../shared/types';
 
 /** The slice of electron-updater's `autoUpdater` this service uses (injected so it can be tested). */
 export interface UpdaterLike {
@@ -16,6 +16,8 @@ export interface UpdateServiceDeps {
   enabled: boolean;
   currentVersion: string;
   toast: (t: ToastMessage) => void;
+  /** Phase changes, for the Preferences button (spinner while checking/downloading). */
+  onPhase: (phase: UpdatePhase) => void;
 }
 
 /**
@@ -26,6 +28,7 @@ export interface UpdateServiceDeps {
 export class UpdateService {
   private downloadedVersion: string | null = null;
   private checking = false;
+  private phase: UpdatePhase = 'idle';
 
   constructor(private readonly deps: UpdateServiceDeps) {
     const u = deps.updater;
@@ -33,10 +36,13 @@ export class UpdateService {
     u.autoInstallOnAppQuit = true;
     u.on('update-downloaded', (info) => {
       this.downloadedVersion = info.version;
+      this.setPhase('ready');
       deps.toast(this.readyToast(info.version));
     });
     // Download errors are also emitted here; without a listener they would be unhandled.
-    u.on('error', () => undefined);
+    u.on('error', () => {
+      if (!this.downloadedVersion) this.setPhase('idle');
+    });
   }
 
   get isUpdateReady(): boolean {
@@ -55,8 +61,11 @@ export class UpdateService {
     }
     if (this.checking) return;
     this.checking = true;
+    this.setPhase('checking');
     try {
       const r = await updater.checkForUpdates();
+      // The download keeps going after the check resolves; 'update-downloaded' moves it to ready.
+      this.setPhase(r?.isUpdateAvailable && !this.downloadedVersion ? 'downloading' : this.phase === 'ready' ? 'ready' : 'idle');
       if (!manual) return;
       if (r?.isUpdateAvailable) {
         toast({ kind: 'info', text: `Descargando Fast Client ${r.updateInfo.version}…` });
@@ -64,6 +73,7 @@ export class UpdateService {
         toast({ kind: 'success', text: `Ya tienes la última versión (${currentVersion})` });
       }
     } catch {
+      this.setPhase('idle');
       if (manual) toast({ kind: 'error', text: 'No se pudo buscar actualizaciones. Revisa tu conexión.' });
     } finally {
       this.checking = false;
@@ -73,6 +83,12 @@ export class UpdateService {
   /** Called after the profile was saved on close: install silently and reopen the app. */
   installAndRestart(): void {
     this.deps.updater.quitAndInstall(true, true);
+  }
+
+  private setPhase(phase: UpdatePhase): void {
+    if (phase === this.phase) return;
+    this.phase = phase;
+    this.deps.onPhase(phase);
   }
 
   private readyToast(version: string): ToastMessage {

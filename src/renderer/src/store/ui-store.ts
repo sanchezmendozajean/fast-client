@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { defaultSettings } from '@shared/defaults';
-import type { AppSettings, RecentEntry, ToastKind, ToastMessage } from '@shared/types';
+import type { AppSettings, RecentEntry, ToastKind, ToastMessage, UpdatePhase } from '@shared/types';
 import type { MenuEntry } from '../components/common/Menu';
 
 export interface Toast extends ToastMessage {
@@ -57,6 +57,7 @@ interface UiState {
   recents: RecentEntry[];
   profilesDir: string;
   appVersion: string;
+  updatePhase: UpdatePhase;
   /** Resolved theme currently applied to <html data-theme>. */
   effectiveTheme: 'dark' | 'light';
 
@@ -77,6 +78,7 @@ interface UiState {
 
   setSettings(s: AppSettings): void;
   setRecents(r: RecentEntry[]): void;
+  setUpdatePhase(phase: UpdatePhase): void;
   setMeta(m: { profilesDir: string; appVersion: string }): void;
   setEffectiveTheme(t: 'dark' | 'light'): void;
 
@@ -105,6 +107,7 @@ export const useUiStore = create<UiState>()((set, get) => ({
   recents: [],
   profilesDir: '',
   appVersion: '0.0.0',
+  updatePhase: 'idle',
   effectiveTheme: 'dark',
 
   toasts: [],
@@ -145,6 +148,7 @@ export const useUiStore = create<UiState>()((set, get) => ({
     d?.resolve(value);
   },
 
+  setUpdatePhase: (updatePhase) => set({ updatePhase }),
   setPreferencesOpen: (preferencesOpen) => set({ preferencesOpen, openMenu: null }),
   setOpenMenu: (openMenu) => set({ openMenu }),
   setSidebarCollapsed: (sidebarCollapsed) => set({ sidebarCollapsed }),

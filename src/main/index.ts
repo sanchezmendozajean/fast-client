@@ -97,6 +97,7 @@ const updates = new UpdateService({
   enabled: app.isPackaged && !process.env.FASTCLIENT_HOME,
   currentVersion: __APP_VERSION__,
   toast,
+  onPhase: (phase) => send('update:phase', phase),
 });
 
 function profileArg(argv: string[]): string | undefined {

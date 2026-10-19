@@ -150,6 +150,9 @@ export interface ProfileSession {
   profilePath: string;
 }
 
+/** Lifecycle of an update check as shown on the Preferences button. */
+export type UpdatePhase = 'idle' | 'checking' | 'downloading' | 'ready';
+
 export interface InitResult {
   session: ProfileSession | null;
   /** Startup NEW flow (doc 04 §4) found an existing default profile: renderer must ask. */

@@ -219,5 +219,8 @@ export const t = {
     autoUpdateHint: 'Descarga la nueva versión en segundo plano y la instala al cerrar.',
     version: 'Versión instalada',
     checkNow: 'Buscar ahora',
+    checking: 'Buscando…',
+    downloading: 'Descargando…',
+    updateNow: 'Actualizar ahora',
   },
 } as const;

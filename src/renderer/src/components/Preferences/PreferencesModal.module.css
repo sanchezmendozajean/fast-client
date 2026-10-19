@@ -167,3 +167,14 @@
 .save {
   padding: 0 18px;
 }
+
+/* Waiting state of the update button: the sync icon spins while checking/downloading. */
+.busy :global(.material-symbols-rounded) {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

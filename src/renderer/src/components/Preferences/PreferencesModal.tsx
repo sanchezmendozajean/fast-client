@@ -104,6 +104,7 @@ function PreferencesDialog(): JSX.Element {
   const settings = useUiStore((s) => s.settings);
   const profilePath = useProfileStore((s) => s.profilePath);
   const appVersion = useUiStore((s) => s.appVersion);
+  const updatePhase = useUiStore((s) => s.updatePhase);
   const close = (): void => useUiStore.getState().setPreferencesOpen(false);
   const original = useRef(settings);
   const [tab, setTab] = useState<PrefsTab>('network');
@@ -342,9 +343,19 @@ function PreferencesDialog(): JSX.Element {
               <span>{t.prefs.version}</span>
               <span className={`${styles.hint} ${styles.mono}`}>{appVersion}</span>
             </div>
-            <Button variant="secondary" icon="sync" onClick={() => void window.api.invoke('update:check')}>
-              {t.prefs.checkNow}
-            </Button>
+            {updatePhase === 'ready' ? (
+              <Button variant="primary" icon="system_update_alt" onClick={() => void window.api.invoke('update:install')}>
+                {t.prefs.updateNow}
+              </Button>
+            ) : updatePhase === 'idle' ? (
+              <Button variant="secondary" icon="sync" onClick={() => void window.api.invoke('update:check')}>
+                {t.prefs.checkNow}
+              </Button>
+            ) : (
+              <Button variant="secondary" icon="sync" className={styles.busy} disabled>
+                {updatePhase === 'checking' ? t.prefs.checking : t.prefs.downloading}
+              </Button>
+            )}
           </div>
         </section>
       </div>

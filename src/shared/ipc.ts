@@ -13,6 +13,7 @@ import type {
   SaveReason,
   SaveResult,
   ToastMessage,
+  UpdatePhase,
 } from './types';
 
 /** Renderer → main, request/response (ipcRenderer.invoke / ipcMain.handle). */
@@ -51,6 +52,7 @@ export interface EventChannels {
   'settings:changed': AppSettings;
   'app:before-close': null;
   'app:toast': ToastMessage;
+  'update:phase': UpdatePhase;
   'menu:command': MenuCommand;
   /** A .fcprofile was double-clicked while the app was running. */
   'app:open-path': string;
@@ -87,6 +89,7 @@ export const EVENT_CHANNELS = [
   'settings:changed',
   'app:before-close',
   'app:toast',
+  'update:phase',
   'menu:command',
   'app:open-path',
 ] as const satisfies readonly EventChannel[];
